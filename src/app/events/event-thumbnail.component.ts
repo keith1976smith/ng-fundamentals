@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-    selector: 'event-thumbnail',
+    selector: 'app-event-thumbnail',
     template: `
         <div class="well hoverwell thumbnail">
             <h2>{{event?.name}}</h2>
@@ -26,8 +26,6 @@ import { Component, Input } from '@angular/core';
         </div>
     `,
     styles: [`
-        .green { color: #003300 !important; }
-        .bold { font-weight: bold; }
         .thumbnail { min-height: 210px; }
         .pad-left { margin-left: 10px; }
         .well div { color: #bbb;}
