@@ -10,17 +10,20 @@ import {
   EventService,
   EventRouteActivator,
   EventsListResolver,
-  CreateSessionComponent
+  CreateSessionComponent,
+  SessionsListComponent
 } from './events/index';
+
+import { DurationPipe } from './events/shared/duration.pipe';
 
 import { EventsAppComponent } from './events-app.component';
 import { NavBarComponent } from './nav/nav-bar.component';
 import { Error404Component } from './errors/404.component';
-
 import { ToastrService } from './common/toastr.service';
 import { appRoutes } from './routes';
 import { AuthService } from './user/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CollapsibleWellComponent } from './common/collapsible-well.component';
 
 @NgModule({
   imports: [
@@ -34,10 +37,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     EventsListComponent,
     EventThumbnailComponent,
     EventDetailsComponent,
+    SessionsListComponent,
     CreateEventComponent,
     CreateSessionComponent,
     NavBarComponent,
-    Error404Component
+    Error404Component,
+    CollapsibleWellComponent,
+    DurationPipe
   ],
   providers: [
     EventService,
