@@ -19,11 +19,13 @@ import { DurationPipe } from './events/shared/duration.pipe';
 import { EventsAppComponent } from './events-app.component';
 import { NavBarComponent } from './nav/nav-bar.component';
 import { Error404Component } from './errors/404.component';
-import { ToastrService } from './common/toastr.service';
+import { TOASTR_TOKEN, IToastr } from './common/toastr.service';
 import { appRoutes } from './routes';
 import { AuthService } from './user/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CollapsibleWellComponent } from './common/collapsible-well.component';
+
+declare let toastr: IToastr;
 
 @NgModule({
   imports: [
@@ -47,7 +49,10 @@ import { CollapsibleWellComponent } from './common/collapsible-well.component';
   ],
   providers: [
     EventService,
-    ToastrService,
+    {
+      provide: TOASTR_TOKEN,
+      useValue: toastr
+    },
     EventRouteActivator,
     {
       provide: 'canDeactivateCreateEvent',
