@@ -19,13 +19,21 @@ import { DurationPipe } from './events/shared/duration.pipe';
 import { EventsAppComponent } from './events-app.component';
 import { NavBarComponent } from './nav/nav-bar.component';
 import { Error404Component } from './errors/404.component';
-import { TOASTR_TOKEN, IToastr } from './common/toastr.service';
+import {
+  JQ_TOKEN,
+  TOASTR_TOKEN,
+  IToastr,
+  CollapsibleWellComponent,
+  SimpleModalComponent,
+  ModalTriggerDirective
+} from './common';
 import { appRoutes } from './routes';
 import { AuthService } from './user/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CollapsibleWellComponent } from './common/collapsible-well.component';
 
-declare let toastr: IToastr;
+const toastr: IToastr = window['toastr'];
+const jQuery = window['$'];
+
 
 @NgModule({
   imports: [
@@ -45,19 +53,16 @@ declare let toastr: IToastr;
     NavBarComponent,
     Error404Component,
     CollapsibleWellComponent,
+    SimpleModalComponent,
+    ModalTriggerDirective,
     DurationPipe
   ],
   providers: [
     EventService,
-    {
-      provide: TOASTR_TOKEN,
-      useValue: toastr
-    },
+    { provide: TOASTR_TOKEN, useValue: toastr },
+    { provide: JQ_TOKEN, useValue: jQuery },
     EventRouteActivator,
-    {
-      provide: 'canDeactivateCreateEvent',
-      useValue: checkDirtyState
-    },
+    { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState },
     EventsListResolver,
     AuthService
   ],
