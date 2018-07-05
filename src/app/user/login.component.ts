@@ -12,10 +12,16 @@ import { Router } from '@angular/router';
 
 export class LoginComponent {
     mouseoverLogin: boolean;
+    loginInvalid = false;
     constructor(private authService: AuthService, private route: Router) {}
     login(formValues) {
-        this.authService.loginUser(formValues.userName, formValues.password);
-        this.route.navigate(['events']);
+        this.authService.loginUser(formValues.userName, formValues.password).subscribe(response => {
+            if (!response) {
+                this.loginInvalid = true;
+            } else {
+                this.route.navigate(['events']);
+            }
+        });
     }
 
     cancel() {

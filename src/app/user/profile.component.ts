@@ -64,8 +64,9 @@ export class ProfileComponent implements OnInit {
       this.auth.updateCurrentUser(
         formValues.firstName,
         formValues.lastName
-      );
-      this.toastr.success('Profile saved successfully');
+      ).subscribe(() => {
+        this.toastr.success('Profile saved successfully');
+      });
     }
   }
 }
