@@ -69,4 +69,10 @@ export class ProfileComponent implements OnInit {
       });
     }
   }
+
+  logout() {
+    this.auth.logout().subscribe(() => {
+      this.route.navigate(['/user/login']);
+    });
+  }
 }
